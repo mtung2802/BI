@@ -4,12 +4,12 @@ Du an xay dung he thong BI phan tich hieu qua marketing va doanh thu ban le cua 
 
 ## Thanh phan chinh
 
-- `masan_case.xlsx`: du lieu nguon.
-- `import_excel_to_postgres.py`: import du lieu Excel vao PostgreSQL staging.
-- `sql-marketing.sql`: tao schema `dw`, cac bang dimension va fact.
-- `py-marketing.py`: ETL tu staging sang data warehouse.
-- `pbi-marketing.pbix`: dashboard Power BI.
-- `data/`: du lieu export tu cac visual Power BI de doi chieu so lieu bao cao.
+- `dataset/masan_case.xlsx`: du lieu nguon.
+- `etl/import_excel_to_postgres.py`: import du lieu Excel vao PostgreSQL staging.
+- `sql/sql-marketing.sql`: tao schema `dw`, cac bang dimension va fact.
+- `etl/py-marketing.py`: ETL tu staging sang data warehouse.
+- `dashboard/pbi-marketing.pbix`: dashboard Power BI.
+- `report/Bao cao.pdf`: bao cao cuoi ky.
 - `requirements-marketing.txt`: cac thu vien Python can cai dat.
 
 ## Cong nghe su dung
@@ -32,22 +32,22 @@ pip install -r requirements-marketing.txt
 2. Tao data warehouse:
 
 ```powershell
-psql -d <database_name> -f sql-marketing.sql
+psql -d <database_name> -f sql/sql-marketing.sql
 ```
 
 3. Import Excel vao staging:
 
 ```powershell
-python import_excel_to_postgres.py --replace
+python etl/import_excel_to_postgres.py --replace
 ```
 
 4. Chay ETL vao schema `dw`:
 
 ```powershell
-python py-marketing.py
+python etl/py-marketing.py
 ```
 
-5. Mo `pbi-marketing.pbix` bang Power BI Desktop va refresh du lieu.
+5. Mo `dashboard/pbi-marketing.pbix` bang Power BI Desktop va refresh du lieu.
 
 ## Luu y bao mat
 

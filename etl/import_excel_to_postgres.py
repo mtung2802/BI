@@ -13,7 +13,8 @@ from dotenv import load_dotenv
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
 
 BASE_DIR = Path(__file__).resolve().parent
-load_dotenv(BASE_DIR / ".env")
+PROJECT_DIR = BASE_DIR.parent
+load_dotenv(PROJECT_DIR / ".env")
 
 DB_CONFIG = {
     "user": os.getenv("DB_USER"),
@@ -40,7 +41,7 @@ def clean_cell(value):
 
 def main():
     parser = argparse.ArgumentParser(description="Import Excel Masan case vào PostgreSQL staging table")
-    parser.add_argument("--excel", default=str(BASE_DIR / "masan_case.xlsx"), help="Đường dẫn file Excel")
+    parser.add_argument("--excel", default=str(PROJECT_DIR / "dataset" / "masan_case.xlsx"), help="Đường dẫn file Excel")
     parser.add_argument("--sheet", default=0, help="Tên sheet hoặc số thứ tự sheet, mặc định sheet đầu tiên")
     parser.add_argument("--replace", action="store_true", help="Xóa và tạo lại bảng raw trước khi import")
     args = parser.parse_args()
